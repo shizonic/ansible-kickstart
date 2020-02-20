@@ -1,0 +1,21 @@
+---
+- name: "Webserver playbook"
+  hosts: web
+  tasks:
+    - name: "Install httpd package"
+      yum:
+        name: httpd
+        state: installed
+      become: yes
+    - name: "Start httpd service"
+      service:
+        name: httpd
+        state: started
+      become: yes
+    - name: "Open port 80 on firewall"
+      firewalld:
+        service: http
+        permanent: yes
+        state: enabled
+        immediate: yes
+      become: true

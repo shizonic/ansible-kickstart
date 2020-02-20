@@ -1,0 +1,10 @@
+---
+- name: "Tempfolder playbook"
+  hosts: all:!db
+  tasks:
+    - name: "Create tempfolder except on db group"
+      file:
+        dest: "/tmp/tempfolder"
+        mode: "01755"
+        state: directory
+      become: yes
