@@ -7,11 +7,14 @@
         name: httpd
         state: installed
       become: yes
-    - name: "Start httpd service"
+    - name: "Start httpd and firewalld services"
       service:
-        name: httpd
+        name: "{{ item }}"
         state: started
       become: yes
+      with_items:
+        - httpd
+        - firewalld
     - name: "Open port 80 on firewall"
       firewalld:
         service: http
