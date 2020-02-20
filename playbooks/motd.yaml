@@ -1,0 +1,10 @@
+---
+- hosts: all
+  become: yes
+  vars:
+    motd_content: "Hello there!\n"
+  tasks:
+   - name: Set content of /etc/motd
+     copy:
+       dest: /etc/motd
+       content: "{{ motd_content }}"
