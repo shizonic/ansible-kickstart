@@ -1,0 +1,10 @@
+users:
+  - name: jim
+    food: pizza
+  - name: sabrina
+    food: burger
+  - name: hans
+    food: vegan
+  - name: eveline
+    food: burger
+  - name: santos

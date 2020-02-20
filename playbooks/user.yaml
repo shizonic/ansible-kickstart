@@ -1,0 +1,33 @@
+---
+- hosts: node1
+  become: yes
+  vars_files:
+    - ../vars/user.yaml
+  tasks:
+    - name: Put template
+      template:
+        src: ../templates/user.j2
+        dest: /etc/dinner.txt
+
+- hosts: node2
+  become: yes
+  vars_files:
+    - ../vars/user.yaml
+  tasks:
+    - name: create groups
+      group:
+        name: "{{ item.food | default('kebab') }}"
+      with_items: "{{ users }}"
+    - name: ensure zsh is installed
+      yum:
+        name: zsh
+        state: installed
+    - name: create users
+      user:
+        name: "{{ item.name }}"
+        group: "{{ item.food | default('kebab') }}"
+        append: yes
+        shell: "{% if item.name == 'santos' %}/usr/sbin/nologin{% else %}/usr/bin/zsh{% endif %}"
+        password: "{{ 'N0t_5o_s3cur3' | password_hash('sha512') }}"
+        update_password: on_create
+      with_items: "{{ users }}"

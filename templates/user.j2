@@ -1,0 +1,3 @@
+{% for person in users %}
+{{ person.name }}               {{ person.food | default('kebab') }}
+{% endfor %}
