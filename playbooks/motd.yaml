@@ -2,7 +2,7 @@
 - hosts: all
   become: yes
   tasks:
-   - name: Set content of /etc/motd
-     copy:
-       dest: /etc/motd
-       content: "{{ motd_content }}"
+    - name: Set content of /etc/motd
+      template:
+        src: ../templates/motd.j2
+        dest: /etc/motd
