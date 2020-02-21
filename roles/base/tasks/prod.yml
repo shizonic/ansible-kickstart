@@ -1,9 +1,4 @@
 ---
-- hosts: all
-  become: yes
-  roles:
-    - base
-
 - hosts: web
   become: yes
   roles:
