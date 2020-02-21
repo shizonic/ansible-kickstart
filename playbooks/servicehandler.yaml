@@ -13,4 +13,4 @@
     - name: Start service httpd
       become: yes
       command: systemctl start httpd
-      when: "'Active: active (running)' not in {{ status.stdout }}"
+      when: "'Active: active (running)' not in status.stdout"
