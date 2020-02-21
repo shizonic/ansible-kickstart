@@ -1,0 +1,16 @@
+---
+- hosts: node1
+  tasks:
+    - name: Install httpd
+      become: yes
+      yum:
+        name: httpd
+        state: present
+    - name: Get status of service httpd
+      command: systemctl status httpd
+      register: status
+      ignore_errors: true
+    - name: Start service httpd
+      become: yes
+      command: systemctl start httpd
+      when: "'Active: active (running)' not in {{ status }}"
