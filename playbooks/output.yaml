@@ -6,4 +6,4 @@
       register: output
     - name: Print output
       debug:
-        var: output
+        var: output.stdout
