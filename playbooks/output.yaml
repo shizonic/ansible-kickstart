@@ -1,0 +1,9 @@
+---
+- hosts: node1
+  tasks:
+    - name: Find postfix config files
+      command: find /etc/postfix -type f -name *.cf
+      register: output
+    - name: Print output
+      debug:
+        var: output
