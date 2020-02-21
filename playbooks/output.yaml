@@ -4,10 +4,9 @@
     - name: Find postfix config files
       command: find /etc/postfix -type f -name *.cf
       register: output
-    - name: Debug output
-      debug:
-        var: output
     - name: List postfix config files
       debug:
         var: output.stdout_lines
-      loop: "{{ output }}"
+    - name: Backup postfix config files
+      command: "cp {{ item }} {{ item }}.bkp"
+      with_items: "{{ output.stdout_lines }}"
