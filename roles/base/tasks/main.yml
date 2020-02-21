@@ -1,0 +1,7 @@
+---
+- name: Set custom text
+  include: motd.yml
+  tags: motd
+- name: Install packages
+  include: packages.yml
+  tags: packages

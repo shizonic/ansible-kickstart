@@ -1,0 +1,10 @@
+---
+- name: Install packages
+  yum:
+    name:
+      - firewalld
+      - yum-utils
+      - dos2unix
+      - emacs
+      - vim
+    state: installed

@@ -2,7 +2,7 @@
 - hosts: node1
   become: yes
   vars_files:
-    - ../vars/user.yaml
+    - ../vars/user.yml
   tasks:
     - name: Put template
       template:
@@ -12,7 +12,7 @@
 - hosts: node2
   become: yes
   vars_files:
-    - ../vars/user.yaml
+    - ../vars/user.yml
   tasks:
     - name: create groups
       group:
