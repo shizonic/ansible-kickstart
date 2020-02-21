@@ -7,10 +7,10 @@
         name: httpd
         state: present
     - name: Get status of service httpd
-      command: systemctl status httpd
+      command: 'systemctl status httpd'
       register: status
       ignore_errors: true
     - name: Start service httpd
       become: yes
-      command: systemctl start httpd
+      command: 'systemctl start httpd'
       when: "'Active: active (running)' not in status.stdout"
