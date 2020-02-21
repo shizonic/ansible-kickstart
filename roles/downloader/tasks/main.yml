@@ -1,0 +1,12 @@
+---
+- block:
+    - name: Download things from the internet
+      get_url:
+        url: http://www.not_existing_url.com/not_existing_file
+        dest: /tmp/
+  rescue:
+    - debug:
+        msg: "Download failed!"
+  always:
+    - debug:
+        msg: "Download attempt finished."
