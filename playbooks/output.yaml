@@ -7,7 +7,11 @@
     - name: List postfix config files
       debug:
         var: output.stdout_lines
+    - name: Find existing backup files
+      command: find /etc/postfix -type f -name *.cf.bkp
+      register: backup_files
     - name: Backup postfix config files
       command: "cp {{ item }} {{ item }}.bkp"
       with_items: "{{ output.stdout_lines }}"
+      when: backup_files.stdout.find(item) -1
       become: yes
