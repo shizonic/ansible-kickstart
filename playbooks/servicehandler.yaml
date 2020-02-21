@@ -9,7 +9,7 @@
     - name: Get status of service httpd
       command: 'systemctl status httpd'
       register: status
-      failed_when: "'FAILED' in status.stderr"
+      failed_when: "'FAILED' in status.stdout"
     - debug:
         var: status.stdout
     - name: Start service httpd
