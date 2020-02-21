@@ -11,7 +11,7 @@
       register: status
       ignore_errors: true
     - debug:
-      var: status
+        var: status
     - name: Start service httpd
       become: yes
       command: 'systemctl start httpd'
