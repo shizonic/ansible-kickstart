@@ -4,6 +4,9 @@
     - name: Find postfix config files
       command: find /etc/postfix -type f -name *.cf
       register: output
-    - name: Print output
+    - name: Debug output
       debug:
-        var: output.stdout
+        var: output
+    - name: List postfix config files
+      debug:
+        var: output.stdout_lines
