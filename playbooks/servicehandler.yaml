@@ -10,7 +10,9 @@
       command: 'systemctl status httpd'
       register: status
       ignore_errors: true
+    - debug:
+      var: status
     - name: Start service httpd
       become: yes
       command: 'systemctl start httpd'
-      when: "'active (running)' not in status.stdout"
+      when: "'Active: active (running)' not in status.stdout"
