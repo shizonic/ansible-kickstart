@@ -1,0 +1,24 @@
+---
+- name: Install httpd and firewalld packages
+  yum:
+    name:
+      - httpd
+      - firewalld
+    state: installed
+- name: Start httpd and firewalld services
+  service:
+    name: "{{ item }}"
+    state: started
+    enabled: yes
+  with_items:
+    - httpd
+    - firewalld
+- name: Open firewall for http and https
+  firewalld:
+    service: "{{ item }}"
+    state: enabled
+    immediate: yes
+    permanent: true
+  with_items:
+    - http
+    - https
