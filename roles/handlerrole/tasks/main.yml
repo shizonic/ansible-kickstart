@@ -1,0 +1,6 @@
+---
+- name: Create directory
+  file:
+    path: /home/ansible/newdir
+    state: directory
+  notify: timestamp
