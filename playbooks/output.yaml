@@ -10,3 +10,4 @@
     - name: Backup postfix config files
       command: "cp {{ item }} {{ item }}.bkp"
       with_items: "{{ output.stdout_lines }}"
+      become: yes
