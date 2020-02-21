@@ -10,3 +10,4 @@
     - name: List postfix config files
       debug:
         var: output.stdout_lines
+      loop: "{{ output }}"
