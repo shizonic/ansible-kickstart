@@ -1,6 +1,5 @@
 ---
-- name: "Tempfolder playbook"
-  hosts: all:!db
+- hosts: all:!db
   tasks:
     - name: "Create tempfolder except on db group"
       file:

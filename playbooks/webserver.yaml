@@ -1,26 +1,5 @@
 ---
-- name: "Webserver playbook"
-  hosts: web
-  tasks:
-    - name: "Install httpd and firewalld package"
-      yum:
-        name:
-        - httpd
-        - firewalld
-        state: installed
-      become: yes
-    - name: "Start httpd and firewalld services"
-      service:
-        name: "{{ item }}"
-        state: started
-      become: yes
-      with_items:
-        - httpd
-        - firewalld
-    - name: "Open port 80 on firewall"
-      firewalld:
-        service: http
-        permanent: yes
-        state: enabled
-        immediate: yes
-      become: true
+- hosts: web
+  become: yes
+  roles:
+    - httpd
