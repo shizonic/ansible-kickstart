@@ -1,4 +1,6 @@
 ---
+- name: Include secrets
+  include_vars: secrets.yml
 - name: Put template
   template:
     src: nsa.j2
